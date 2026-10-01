@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QAL Agentes Inmobiliarios — Vende tu piso con ventaja</title>
+  
+  <!-- Tipografías requeridas: Solera (Bodoni Moda, Instrument Serif, Jost, Inter) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Jost:wght@300;400;500;600;700&display=swap">
+  
+  <meta name="description" content="Inmobiliaria en Sevilla. Estudiamos tu inmueble, lo posicionamos con criterio y defendemos su valor en la negociación. Valoración gratuita y sin compromiso.">
+  <link rel="canonical" href="https://qal.es/">
+  <meta name="theme-color" content="#1F1016">
+
+  <!-- Icono de pestaña y de pantalla de inicio.
+       El SVG lo usan los navegadores modernos y escala sin pixelarse; los
+       PNG son el respaldo para Safari y para los que no leen SVG. El
+       apple-touch-icon es el que se ve si alguien guarda la web en la
+       pantalla de inicio del iPhone: sin el sale un cuadro gris, y aqui
+       casi todo el trafico entra por movil. -->
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="favicon-16.png" sizes="16x16" type="image/png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+
+  <!-- Tarjeta de enlace. Es la PRIMERA impresión real: se ve en WhatsApp
+       antes de que la web cargue. Sin esto el enlace sale como texto pelado. -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:site_name" content="QAL Agentes Inmobiliarios">
+  <meta property="og:title" content="QAL Agentes Inmobiliarios — Vende tu piso con ventaja">
+  <meta property="og:description" content="Estudiamos tu inmueble, lo posicionamos con criterio y defendemos su valor en la negociación. Valoración gratuita y sin compromiso en Sevilla.">
+  <meta property="og:url" content="https://qal.es/">
+  <meta property="og:image" content="https://qal.es/assets/og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- El primer fotograma, pedido cuanto antes: es lo que se ve al entrar.
+       Uno u otro según el ancho, para no bajar los dos. -->
+  <link rel="preload" as="image" href="assets/frames_ancho/frame_0001.webp" media="(min-width: 820px)">
+  <link rel="preload" as="image" href="assets/frames_movil/frame_0001.webp" media="(max-width: 819px)">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- CONTENEDOR FIJO DE FONDO CON CANVAS SINCRONIZADO -->
+  <div class="canvas-container" aria-hidden="true">
+    <canvas id="scroll-canvas"></canvas>
+    <div class="canvas-overlay"></div>
+  </div>
+
+  <!-- NAVEGACIÓN SUPERIOR FIJA -->
+  <header class="site-header">
+    <div class="nav-container">
+      
+      <!-- Logotipo QAL Circular con acentos Solera -->
+      <a href="#hero" class="brand-logo-link" aria-label="QAL Agentes Inmobiliarios Sevilla">
+        <svg class="qal-logo-svg" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="47" fill="#1F1016" stroke="#C9B183" stroke-width="2.5"/>
+          <text x="44" y="58" font-family="'Bodoni Moda', 'Instrument Serif', Georgia, serif" font-size="52" fill="#F2E7DE" text-anchor="middle" font-weight="400">Q</text>
+          <text x="64" y="56" font-family="'Jost', 'Inter', sans-serif" font-size="16" fill="#C9B183" text-anchor="middle" font-weight="600" letter-spacing="0.5">AL</text>
+          <text x="50" y="74" font-family="'Jost', 'Inter', sans-serif" font-size="5.5" fill="#F2E7DE" text-anchor="middle" font-weight="500" letter-spacing="0.8">AGENTES INMOBILIARIOS</text>
+          <text x="50" y="81" font-family="'Jost', 'Inter', sans-serif" font-size="4.8" fill="#C2A9A2" text-anchor="middle" font-weight="400" letter-spacing="1.2">· SEVILLA ·</text>
+        </svg>
+      </a>
+
+      <!-- Enlaces de navegación de escritorio -->
+      <nav class="desktop-nav" aria-label="Navegación principal">
+        <ul class="nav-links">
+          <li><a href="#estrategia" class="nav-link">Estrategia</a></li>
+          <li><a href="#errores" class="nav-link">Errores al vender</a></li>
+          <li><a href="#equipo" class="nav-link">Equipo</a></li>
+          <li><a href="#garantia" class="nav-link">Contacto</a></li>
+
+          <!-- Desplegable con las 4 opciones clave (Ubicación señalada en amarillo) -->
+          <li class="nav-item has-dropdown" data-dropdown="claves">
+            <button type="button" class="nav-link dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+              Claves de venta
+              <svg class="dropdown-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu">
+              <button type="button" class="dropdown-item-btn" data-open-card="card-media">
+                <span class="dropdown-item-title">Media 40 días</span>
+                <span class="dropdown-item-sub">Nuestra media de venta</span>
+              </button>
+              <button type="button" class="dropdown-item-btn" data-open-card="card-momento">
+                <span class="dropdown-item-title">El momento importa</span>
+                <span class="dropdown-item-sub">Lectura profesional del mercado</span>
+              </button>
+              <button type="button" class="dropdown-item-btn" data-open-card="card-errores">
+                <span class="dropdown-item-title">Errores al vender</span>
+                <span class="dropdown-item-sub">Lo caro no siempre es el precio</span>
+              </button>
+              <button type="button" class="dropdown-item-btn" data-open-card="card-compromiso">
+                <span class="dropdown-item-title">Nuestro compromiso</span>
+                <span class="dropdown-item-sub">Llevamos operaciones, no pisos</span>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Botón CTA en Navbar -->
+      <div class="header-action">
+        <a href="#equipo" class="btn btn-pill-nav">Consúltanos</a>
+        
+        <!-- Botón de apertura de menú móvil -->
+        <button type="button" class="mobile-menu-trigger" id="openMenuBtn" aria-label="Abrir menú de navegación" aria-expanded="false" aria-controls="mobileNavModal">
+          <span class="hamburger-bar"></span>
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENEDOR PRINCIPAL DE SCROLL -->
+  <div class="scroll-wrapper">
+
+    <!-- SECCIÓN 1: HERO -->
+    <section class="story-section section-hero" id="hero">
+      <div class="section-content">
+        <div class="hero-inner">
+          <h1 class="hero-title">
+            <span class="title-line-1">Vende tu piso</span>
+            <span class="title-line-2"><em>con ventaja.</em></span>
+          </h1>
+
+          <p class="hero-description">
+            Estudiamos tu inmueble, lo posicionamos con criterio y trabajamos para conseguir el mayor beneficio posible en una media de <strong>40 días</strong>.
+          </p>
+
+          <div class="hero-cta-group">
+            <button type="button" class="btn btn-solid-gold" data-open-card="card-media">Solicitar estudio</button>
+            <a href="#equipo" class="btn btn-solid-gold">Habla con un asesor</a>
+          </div>
+        </div>
+
+        <div class="hero-footer-indicator">
+          <a href="#confianza" class="scroll-indicator" aria-label="Desplázate para recorrer la propiedad">
+            <span class="scroll-text">Desplázate</span>
+            <svg class="scroll-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN INTERMEDIA: CONFIANZA Y TRAYECTORIA EN SEVILLA -->
+    <section class="story-section section-trust" id="confianza">
+      <div class="section-content">
+        <div class="trust-grid">
+          
+          <!-- Columna Imagen -->
+          <div class="trust-image-wrapper">
+            <div class="trust-image-card">
+              <img src="assets/confianza.jpg" alt="Asesoramiento y confianza inmobiliaria en Sevilla" class="trust-image" width="1200" height="896" loading="lazy" decoding="async">
+              <div class="trust-image-overlay"></div>
+            </div>
+          </div>
+
+          <!-- Columna Textos a la misma altura -->
+          <div class="trust-text-content">
+            <div class="section-badge trust-badge-dark">
+              <span>UNA AGENCIA DE PERSONAS</span>
+            </div>
+
+            <h2 class="trust-title">
+              Tu inmobiliaria de <em>confianza</em> en Sevilla.
+            </h2>
+
+            <p class="trust-paragraph">
+              Creemos en la confianza, en el trato cercano y en llegar donde otros no llegan. No gestionamos simples operaciones: <strong>damos soluciones reales.</strong>
+            </p>
+
+            <p class="trust-paragraph">
+              Llevamos más de 5 años analizando el mercado sevillano barrio a barrio.<span class="solo-pc"> Ese conocimiento real del terreno nos permite asesorarte con criterio, rigor y honestidad.</span> Te acompañamos de principio a fin<span class="solo-pc"> —desde la primera consulta hasta después de la firma— con un trato cercano, claro y transparente</span>.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: ESTRATEGIA INMOBILIARIA Y EJE TEMPORAL -->
+    <section class="story-section section-strategy" id="estrategia">
+      <div class="section-content">
+        
+        <div class="section-badge">
+          <span>CÓMO TRABAJAMOS</span>
+        </div>
+
+        <h2 class="section-title">
+          Cuatro cosas, y las cuatro <em>importan.</em>
+        </h2>
+
+        <p class="section-lead">
+          No publicamos para rellenar portales. Cada paso está diseñado para defender el valor de tu propiedad desde el primer día.
+        </p>
+
+        <!-- Cuadrícula de los 4 Pasos -->
+        <div class="strategy-grid">
+          <div class="strategy-card">
+            <span class="strategy-num">01</span>
+            <h3 class="strategy-step-title">Estudiamos</h3>
+            <p class="strategy-step-desc">Tu inmueble y su mercado real, antes de tocar el precio.<span class="solo-pc"> Analizamos zona, demanda real y operaciones cerradas en Sevilla.</span></p>
+          </div>
+
+          <div class="strategy-card">
+            <span class="strategy-num">02</span>
+            <h3 class="strategy-step-title">Posicionamos</h3>
+            <p class="strategy-step-desc">Para destacar desde el primer día.<span class="solo-pc"> Reportaje visual cuidado y puesta en escena que atrae compradores cualificados.</span></p>
+          </div>
+
+          <div class="strategy-card">
+            <span class="strategy-num">03</span>
+            <h3 class="strategy-step-title">Filtramos</h3>
+            <p class="strategy-step-desc">Compradores serios y con capacidad real de financiación<span class="solo-pc">, evitando visitas vacías y el desgaste de tu tiempo.</span></p>
+          </div>
+
+          <div class="strategy-card">
+            <span class="strategy-num">04</span>
+            <h3 class="strategy-step-title">Defendemos</h3>
+            <p class="strategy-step-desc">El valor de tu propiedad en la mesa de negociación.<span class="solo-pc"> Sin prisas, con argumentos sólidos y acompañamiento hasta la notaría.</span></p>
+          </div>
+        </div>
+
+        <!-- Eje de Tiempo: El momento importa -->
+        <div class="timeline-axis-card">
+          <div class="timeline-axis-header">
+            <div class="section-badge" style="margin-bottom: 12px;">
+              <span>LECTURA PROFESIONAL DEL MERCADO</span>
+            </div>
+            <h3 class="contact-card-title">El momento <em>importa.</em></h3>
+            <p class="card-paragraph" style="margin-bottom: 0;">Un inmueble no vale lo mismo el día 5 que el día 60. Esto es lo que ocurre cuando sale al mercado:</p>
+          </div>
+
+          <div class="timeline-track-grid">
+            <div class="timeline-phase">
+              <span class="phase-tag">Día 1 – 14</span>
+              <p class="phase-text">Máxima visibilidad inicial: atrae a los compradores más activos del mercado.</p>
+            </div>
+
+            <div class="timeline-phase phase-optimal">
+              <span class="phase-tag">Día 15 – 40 · Zona Óptima</span>
+              <p class="phase-text">Comprador cualificado: negociación firme y cierre en el valor óptimo.</p>
+            </div>
+
+            <div class="timeline-phase">
+              <span class="phase-tag">+45 días</span>
+              <p class="phase-text">Duda y desgaste: menos visitas y mayor presión para negociar a la baja.</p>
+            </div>
+          </div>
+
+          <div class="timeline-statement-bar">
+            <span class="timeline-statement-text">Lo que se juega: <em>Salir bien al mercado evita correcciones caras.</em></span>
+            <button type="button" class="btn btn-solid-gold" style="padding: 8px 18px; font-size: 12.5px;" data-open-card="card-momento">Ver análisis completo →</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN: ERRORES COMUNES AL VENDER -->
+    <section class="story-section section-mistakes" id="errores">
+      <div class="section-content">
+        
+        <div class="section-badge">
+          <span>LO QUE SE JUEGA</span>
+        </div>
+
+        <h2 class="section-title">
+          Lo caro no siempre es el <em>precio.</em>
+        </h2>
+
+        <p class="section-lead">
+          Una mala gestión inicial puede costar meses de espera y miles de euros en correcciones forzadas.
+        </p>
+
+        <div class="mistakes-grid">
+          <div class="mistake-card">
+            <div class="mistake-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            </div>
+            <div class="mistake-body">
+              <h3>Salir demasiado alto</h3>
+              <p>Quema el anuncio en portales<span class="solo-pc"> y genera ofertas agresivas a la baja tras meses de espera</span>.</p>
+            </div>
+          </div>
+
+          <div class="mistake-card">
+            <div class="mistake-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            </div>
+            <div class="mistake-body">
+              <h3>Publicar sin estrategia</h3>
+              <p>Compite solo por precio<span class="solo-pc"> si no cuenta con una presentación visual que defienda su valor</span>.</p>
+            </div>
+          </div>
+
+          <div class="mistake-card">
+            <div class="mistake-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            </div>
+            <div class="mistake-body">
+              <h3>Aceptar visitas sin filtro</h3>
+              <p>Pérdida de tiempo e intimidad<span class="solo-pc"> con visitas de perfiles que no tienen capacidad real de financiación</span>.</p>
+            </div>
+          </div>
+
+          <div class="mistake-card">
+            <div class="mistake-icon-wrap">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+            </div>
+            <div class="mistake-body">
+              <h3>Negociar sin argumentos</h3>
+              <p>Cede terreno ante la oferta<span class="solo-pc"> por no respaldar el valor del inmueble con datos objetivos del mercado</span>.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN: CONTACTO DIRECTO / TRABAJA CON NOSOTROS -->
+    <section class="story-section section-team" id="equipo">
+      <div class="section-content">
+        
+        <!-- Badge Superior -->
+        <div class="section-badge">
+          <span>CONTACTO DIRECTO</span>
+        </div>
+
+        <!-- Título H2 -->
+        <h2 class="section-title">
+          Hablas con nosotros. <em>Siempre.</em>
+        </h2>
+
+        <!-- Subtítulo / Lead -->
+        <p class="section-lead">
+          Sin centralita y sin comerciales que rotan. Llamas y te coge uno de los dos.
+        </p>
+
+        <!-- Cuadrícula de Perfiles Interactivos -->
+        <div class="team-cards-grid">
+          
+          <!-- Perfil 1: Jose Maria Quero -->
+          <div class="team-profile-card">
+            <div class="profile-avatar-wrapper">
+              <div class="avatar-image-box">
+                <img src="assets/jose-maria.jpg" alt="José María Quero — Agente inmobiliario QAL" class="profile-photo" width="170" height="170" loading="lazy" decoding="async">
+              </div>
+            </div>
+
+            <div class="profile-info">
+              <h3 class="profile-name">José María Quero</h3>
+              <span class="profile-role">Agente inmobiliario</span>
+            </div>
+
+            <div class="profile-actions-grid">
+              <a href="tel:+34667545985" class="profile-call-btn" aria-label="Llamar a José María al +34 667 54 59 85">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span>Llamar</span>
+              </a>
+
+              <a href="https://wa.me/34667545985" target="_blank" rel="noopener"
+                 class="profile-wa-btn" aria-label="Escribir por WhatsApp a José María">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.83.814 2.8.814 3.182 0 5.768-2.587 5.768-5.766.001-3.181-2.584-5.766-5.772-5.766zm8.17 5.766c-.001 4.507-3.667 8.173-8.17 8.173-1.42 0-2.766-.368-3.945-1.025l-4.526 1.187 1.21-4.414c-.739-1.238-1.139-2.67-1.139-4.141 0-4.507 3.667-8.173 8.17-8.173s8.17 3.666 8.17 8.173z"/></svg>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Perfil 2: Nicolas Arenzana -->
+          <div class="team-profile-card">
+            <div class="profile-avatar-wrapper">
+              <div class="avatar-image-box">
+                <img src="assets/nicolas.jpg" alt="Nicolás Arenzana — Agente inmobiliario QAL" class="profile-photo" width="170" height="170" loading="lazy" decoding="async">
+              </div>
+            </div>
+
+            <div class="profile-info">
+              <h3 class="profile-name">Nicolás Arenzana</h3>
+              <span class="profile-role">Agente inmobiliario</span>
+            </div>
+
+            <div class="profile-actions-grid">
+              <a href="tel:+34677680355" class="profile-call-btn" aria-label="Llamar a Nicolás al +34 677 68 03 55">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                <span>Llamar</span>
+              </a>
+
+              <a href="https://wa.me/34677680355" target="_blank" rel="noopener"
+                 class="profile-wa-btn" aria-label="Escribir por WhatsApp a Nicolás">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.83.814 2.8.814 3.182 0 5.768-2.587 5.768-5.766.001-3.181-2.584-5.766-5.772-5.766zm8.17 5.766c-.001 4.507-3.667 8.173-8.17 8.173-1.42 0-2.766-.368-3.945-1.025l-4.526 1.187 1.21-4.414c-.739-1.238-1.139-2.67-1.139-4.141 0-4.507 3.667-8.173 8.17-8.173s8.17 3.666 8.17 8.173z"/></svg>
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Nota al pie de la sección -->
+        <p class="team-footnote">
+          Disponibles en horario laboral
+        </p>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN 3: RESULTADOS Y GARANTÍA -->
+    <section class="story-section section-guarantee" id="garantia">
+      <div class="section-content">
+        <div class="section-badge">
+          <span>COMPROMISO Y RESULTADOS EN SEVILLA</span>
+        </div>
+
+        <h2 class="section-title">
+          Tu tranquilidad en cada paso,<br><em>de la llave a la notaría.</em>
+        </h2>
+
+        <!-- ============================================================
+             MÉTRICAS DESTACADAS
+
+             Las tres cifras de aquí son afirmaciones comerciales
+             públicas, así que cada una tiene que poder sostenerse.
+             Estado a 22/09/2026:
+
+             · «40 días»  -> SÍ está en qal.es, y además desglosado
+                             (Día 1-14, Día 15-40, +45 días). Se queda.
+             · «1:1»      -> SÍ. La web actual usa «Acompañamiento 1:1».
+             · «Gratuita» -> SÍ. La web actual ofrece «Reunión gratuita».
+
+             Lo que se ha QUITADO y por qué:
+             · «98,4 % precio sobre valoración» -> no aparece en ningún
+               sitio de qal.es. Era un dato inventado. En una web pública
+               eso es publicidad engañosa y responde la agencia.
+             · «0 € coste previo hasta la venta» -> tampoco aparece, y
+               afirma bastante más que «reunión gratuita»: dice que no se
+               cobra NADA hasta vender. Si QAL confirma que su modelo es
+               ese, se puede recuperar tal cual. Hasta entonces, no.
+
+             Antes de añadir aquí cualquier cifra nueva: que la confirme
+             Nico o José María, y se anota la fuente en este comentario.
+             ============================================================ -->
+        <div class="stats-row">
+          <div class="stat-box">
+            <div class="stat-value-wrap">
+              <span class="stat-number">40</span>
+              <span class="stat-unit">días</span>
+            </div>
+            <span class="stat-label">Tiempo medio de venta</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-box">
+            <div class="stat-value-wrap">
+              <span class="stat-number">1:1</span>
+              <span class="stat-unit"></span>
+            </div>
+            <span class="stat-label">Acompañamiento<span class="solo-pc"> en cada fase</span></span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-box">
+            <div class="stat-value-wrap">
+              <span class="stat-number">0</span>
+              <span class="stat-unit">€</span>
+            </div>
+            <span class="stat-label">Valoración inicial</span>
+          </div>
+        </div>
+
+        <!-- Tarjeta de Contacto / Llamada a la acción -->
+        <div class="contact-card">
+          <div class="contact-card-header">
+            <h3 class="contact-card-title">Empecemos por saber cuánto vale de verdad.</h3>
+            <p class="contact-card-desc">Estudio gratuito y sin compromiso. Te decimos qué vemos antes de que decidas nada.</p>
+          </div>
+          
+          <!-- ============================================================
+               FORMULARIO DE VALORACION
+
+               Envia a /contacto.php, que vive en este mismo servidor.
+
+               ANTES estaba preparado para Netlify (`data-netlify` y
+               `netlify-honeypot`) y el `action` estaba VACIO. Al publicar
+               en Sered esos atributos dejaron de significar nada: el
+               navegador hacia POST contra la propia pagina, LiteSpeed
+               devolvia el HTML otra vez, y CADA CONTACTO SE PERDIA EN
+               SILENCIO. La persona creia haber escrito y en QAL nadie se
+               enteraba de que existia.
+
+               contacto.php guarda el contacto en un CSV fuera de
+               public_html ANTES de intentar el correo, para que un fallo
+               del buzon no se lleve por delante a los clientes del dia.
+
+               El campo `empresa` de abajo es el señuelo anti-robots: esta
+               oculto por CSS, una persona nunca lo rellena. Lo comprueba
+               contacto.php. NO lo quites ni le cambies el nombre.
+               ============================================================ -->
+          <form class="lead-form" name="valoracion" method="POST" action="/contacto.php">
+            <p class="lead-hp">
+              <label>No rellenes esto: <input name="empresa" tabindex="-1" autocomplete="off"></label>
+            </p>
+
+            <div class="lead-grid">
+              <label class="lead-field">
+                <span>Nombre</span>
+                <input type="text" name="nombre" required autocomplete="name" placeholder="Tu nombre">
+              </label>
+              <label class="lead-field">
+                <span>Teléfono</span>
+                <input type="tel" name="telefono" required autocomplete="tel"
+                       inputmode="tel" placeholder="600 00 00 00">
+              </label>
+              <label class="lead-field">
+                <span>Email <em>(opcional)</em></span>
+                <input type="email" name="email" autocomplete="email" placeholder="tu@correo.com">
+              </label>
+              <label class="lead-field">
+                <span>Zona del inmueble</span>
+                <input type="text" name="zona" required placeholder="Barrio o calle, en Sevilla">
+              </label>
+              <label class="lead-field lead-field-ancho">
+                <span>Cuéntanos algo más <em>(opcional)</em></span>
+                <textarea name="mensaje" rows="3" placeholder="Metros, planta, si está alquilado…"></textarea>
+              </label>
+            </div>
+
+            <label class="lead-consent">
+              <input type="checkbox" name="consentimiento" required>
+              <span>Acepto que QAL trate mis datos para enviarme la valoración y ponerse en contacto conmigo.</span>
+            </label>
+
+            <button type="submit" class="btn btn-solid-gold lead-submit">Pedir mi valoración gratuita</button>
+
+            <p class="lead-nota">
+              Responsable: QAL Agentes Inmobiliarios (CIF B23924467). Finalidad: responder
+              a tu solicitud de valoración. Legitimación: tu consentimiento. No cedemos tus
+              datos a terceros salvo obligación legal, y puedes pedir que los borremos
+              cuando quieras. Más detalle en <a href="legal.html#privacidad">la política de
+              privacidad</a>.
+            </p>
+          </form>
+
+          <p class="lead-o">O si lo prefieres, directamente:</p>
+
+          <div class="contact-card-actions">
+            <button type="button" class="btn btn-glass" data-open-card="card-media">Cómo trabajamos (40 días) →</button>
+            <a href="https://wa.me/34667545985" target="_blank" rel="noopener" class="btn btn-whatsapp" aria-label="Escribir por WhatsApp a QAL Inmobiliaria">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right: 2px;"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.699c.971.53 1.83.814 2.8.814 3.182 0 5.768-2.587 5.768-5.766.001-3.181-2.584-5.766-5.772-5.766zm8.17 5.766c-.001 4.507-3.667 8.173-8.17 8.173-1.42 0-2.766-.368-3.945-1.025l-4.526 1.187 1.21-4.414c-.739-1.238-1.139-2.67-1.139-4.141 0-4.507 3.667-8.173 8.17-8.173s8.17 3.666 8.17 8.173z"/></svg>
+              Escribir por WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Footer institucional -->
+        <footer class="site-footer">
+          <p>© 2026 QAL Agentes Inmobiliarios Sevilla. Todos los derechos reservados.</p>
+          <!-- Obligatorio desde que la web recoge datos por formulario.
+               Los textos son los que QAL ya tenía publicados en el
+               WordPress; no se ha redactado nada nuevo. -->
+          <p class="footer-legal">
+            <a href="legal.html#aviso">Aviso legal</a>
+            <span aria-hidden="true">·</span>
+            <a href="legal.html#privacidad">Política de privacidad</a>
+            <span aria-hidden="true">·</span>
+            <a href="legal.html#cookies">Cookies</a>
+          </p>
+        </footer>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ==========================================================================
+       MODAL DE INFORMACIÓN DESPLEGABLE (4 TARJETAS ADJUNTAS EN ALTA DEFINICIÓN)
+       ========================================================================== -->
+  <div class="info-modal-backdrop" id="infoModalBackdrop" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="info-modal-wrapper">
+      
+      <!-- Cabecera Superior del Modal: Badge + Botón Cerrar independiente -->
+      <div class="info-modal-top-bar">
+        <div class="modal-top-badge">
+          <span>ESTRATEGIA INMOBILIARIA QAL</span>
+        </div>
+        <button type="button" class="info-modal-close" id="closeInfoModalBtn" aria-label="Cerrar ventana de información">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Selector de pestañas rediseñado en cuadrícula sin solapamientos -->
+      <div class="info-modal-tabs">
+        <button type="button" class="modal-tab-btn" data-tab-target="card-media">Media 40 días</button>
+        <button type="button" class="modal-tab-btn" data-tab-target="card-momento">El momento importa</button>
+        <button type="button" class="modal-tab-btn" data-tab-target="card-errores">Errores al vender</button>
+        <button type="button" class="modal-tab-btn" data-tab-target="card-compromiso">Compromiso</button>
+      </div>
+
+      <!-- CONTENIDOS DE LAS 4 TARJETAS -->
+      <div class="info-modal-content-area">
+        
+        <!-- TARJETA 1: NUESTRA MEDIA DE VENTA -->
+        <article class="info-card-panel" id="card-media">
+          <div class="card-overtitle">NUESTRA MEDIA DE VENTA</div>
+          <div class="card-hero-stat">
+            <span class="stat-main">40 <em>días</em></span>
+            <span class="stat-desc">desde que nos propones el inmueble</span>
+          </div>
+          <p class="card-paragraph">
+            No se trata solo de vender rápido. Se trata de vender bien, con método, posicionamiento y una estrategia pensada para defender el valor de tu propiedad.
+          </p>
+          <div class="card-items-list">
+            <div class="card-item-pill">
+              <strong class="item-title">01 · Estudiamos</strong>
+              <span class="item-text">Precio objetivo, zona, demanda activa y competencia real.</span>
+            </div>
+            <div class="card-item-pill">
+              <strong class="item-title">02 · Posicionamos</strong>
+              <span class="item-text">Puesta en escena y reportaje visual para destacar desde el primer día.</span>
+            </div>
+            <div class="card-item-pill">
+              <strong class="item-title">03 · Filtramos</strong>
+              <span class="item-text">Compradores serios y con solvencia económica demostrable.</span>
+            </div>
+            <div class="card-item-pill">
+              <strong class="item-title">04 · Defendemos</strong>
+              <span class="item-text">El valor de tu inmueble en la negociación, sin ceder ante ofertas a la baja.</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- TARJETA 2: LECTURA PROFESIONAL DEL MERCADO -->
+        <article class="info-card-panel" id="card-momento">
+          <div class="card-overtitle">LECTURA PROFESIONAL DEL MERCADO</div>
+          <h3 class="card-main-title">El momento importa.</h3>
+          <div class="card-items-list">
+            <div class="card-item-pill">
+              <strong class="item-title">Día 1–14</strong>
+              <span class="item-text">Alta visibilidad inicial. El inmueble está fresco y capta compradores activos.</span>
+            </div>
+            <div class="card-item-pill item-pill-gold">
+              <strong class="item-title">Día 15–40</strong>
+              <span class="item-text">Zona óptima: comprador filtrado, serio y alineado con el valor real.</span>
+            </div>
+            <div class="card-item-pill item-pill-dark">
+              <strong class="item-title">+45 días</strong>
+              <span class="item-text">Menos frescura, más dudas y más presión para negociar a la baja.</span>
+            </div>
+            <div class="card-item-pill item-pill-conclusion">
+              <strong class="item-title item-title-full">Salir bien al mercado evita correcciones caras.</strong>
+            </div>
+          </div>
+        </article>
+
+        <!-- TARJETA 3: ERRORES COMUNES AL VENDER -->
+        <article class="info-card-panel" id="card-errores">
+          <div class="card-overtitle">ERRORES COMUNES AL VENDER</div>
+          <h3 class="card-main-title">Lo caro no siempre es el precio.</h3>
+          <div class="card-items-list">
+            <div class="card-item-pill">
+              <strong class="item-title">Salir demasiado alto</strong>
+              <span class="item-text">Puede quemar el anuncio y obligar a rectificar tarde.</span>
+            </div>
+            <div class="card-item-pill">
+              <strong class="item-title">Publicar sin estrategia</strong>
+              <span class="item-text">Un inmueble sin posicionamiento compite solo por precio.</span>
+            </div>
+            <div class="card-item-pill">
+              <strong class="item-title">Aceptar visitas sin filtro</strong>
+              <span class="item-text">Hace perder tiempo y desgasta la operación.</span>
+            </div>
+            <div class="card-item-pill">
+              <strong class="item-title">Negociar sin argumentos</strong>
+              <span class="item-text">El comprador gana terreno cuando el valor no está bien defendido.</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- TARJETA 4: NUESTRO COMPROMISO CONTIGO -->
+        <article class="info-card-panel" id="card-compromiso">
+          <div class="card-overtitle">NUESTRO COMPROMISO CONTIGO</div>
+          <h3 class="card-main-title">No llevamos pisos.<br>Llevamos operaciones.</h3>
+          <p class="card-paragraph">
+            Nos implicamos en cada venta con seguimiento, criterio y comunicación clara. Estudiamos tu caso, te decimos lo que vemos y trabajamos para sacar el mejor resultado posible sin marearte ni prometer humo.
+          </p>
+          <div class="card-items-list">
+            <div class="card-item-pill">
+              <strong class="item-title">Transparencia</strong>
+              <span class="item-text">Sabrás qué hacemos, por qué lo hacemos y qué respuesta tiene el mercado.</span>
+            </div>
+            <div class="card-item-pill">
+              <strong class="item-title">Acompañamiento 1:1</strong>
+              <span class="item-text">No delegamos tu venta en un proceso frío ni automático.</span>
+            </div>
+            <div class="card-item-pill">
+              <strong class="item-title">Defensa del valor</strong>
+              <span class="item-text">Negociamos con argumentos, no con prisa.</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MENÚ MÓVIL MODAL / OVERLAY TRASLÚCIDO -->
+  <div class="mobile-menu-overlay" id="mobileNavModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Menú móvil">
+    <div class="mobile-menu-panel">
+      
+      <div class="mobile-menu-header">
+        <div class="brand-logo-link">
+          <svg class="qal-logo-svg" style="width: 44px; height: 44px;" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="47" fill="#1F1016" stroke="#C9B183" stroke-width="2.5"/>
+            <text x="44" y="58" font-family="'Bodoni Moda', 'Instrument Serif', Georgia, serif" font-size="52" fill="#F2E7DE" text-anchor="middle" font-weight="400">Q</text>
+            <text x="64" y="56" font-family="'Jost', 'Inter', sans-serif" font-size="16" fill="#C9B183" text-anchor="middle" font-weight="600" letter-spacing="0.5">AL</text>
+            <text x="50" y="74" font-family="'Jost', 'Inter', sans-serif" font-size="5.5" fill="#F2E7DE" text-anchor="middle" font-weight="500" letter-spacing="0.8">AGENTES INMOBILIARIOS</text>
+            <text x="50" y="81" font-family="'Jost', 'Inter', sans-serif" font-size="4.8" fill="#C2A9A2" text-anchor="middle" font-weight="400" letter-spacing="1.2">· SEVILLA ·</text>
+          </svg>
+        </div>
+        <button type="button" class="mobile-menu-close" id="closeMenuBtn" aria-label="Cerrar menú">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="mobile-nav" aria-label="Navegación móvil">
+        <ul class="mobile-nav-links">
+          <li><a href="#hero" class="mobile-nav-link">Inicio</a></li>
+          <li><a href="#estrategia" class="mobile-nav-link">Estrategia (4 pasos y tiempos)</a></li>
+          <li><a href="#errores" class="mobile-nav-link">Errores comunes al vender</a></li>
+          <li><a href="#equipo" class="mobile-nav-link">Equipo</a></li>
+          <li><a href="#garantia" class="mobile-nav-link">Garantía y Contacto</a></li>
+          <li><button type="button" class="mobile-nav-link mobile-card-trigger" data-open-card="card-media">Ver claves de venta detalladas →</button></li>
+        </ul>
+      </nav>
+
+      <div class="mobile-menu-footer">
+        <a href="#equipo" class="btn btn-solid-white btn-block">Consúltanos</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

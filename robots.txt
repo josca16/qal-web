@@ -1,0 +1,9 @@
+# QAL Agentes Inmobiliarios — qal.es
+# Se indexa todo menos la pagina legal, que no aporta nada en buscadores
+# y compite con la portada por las mismas busquedas de marca.
+
+User-agent: *
+Allow: /
+Disallow: /legal.html
+
+Sitemap: https://qal.es/sitemap.xml

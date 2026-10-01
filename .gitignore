@@ -1,0 +1,10 @@
+# Datos de contactos del formulario: nunca al repositorio
+*.csv
+# Documentación interna
+CONTEXTO.md
+MEJORAS.md
+_*
+# Sistema
+desktop.ini
+Thumbs.db
+.DS_Store
